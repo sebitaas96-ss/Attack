@@ -1,0 +1,24 @@
+<accordion [isAnimated]="true" *ngIf="domainInfo">
+  <accordion-group [panelClass]="'border'" [isOpen]="false" class="mb-4">
+    <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+      <div
+        class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+        <h2><i class="iconsminds-letter-open"></i>Domain</h2>
+      </div>
+    </div>
+    <div class="row"  *ngFor="let a of domainInfo">
+      <div class="col-12 col-md-6" *ngIf="a.http_status == 200">
+        <h3 class="mb-0">Información</h3>
+        <p class="mb-0">Servidor HTTP: {{ a.plugins.HTTPServer.string[0] }}</p>
+        <p class="mb-0">Pais: {{ a.plugins.Country.string[0] }}</p>
+        <p *ngIf="a.plugins.Email" class="mb-0">Email: {{ a.plugins.Email.string[0] }}</p>
+        <p class="mb-0">IP: {{ a.plugins.IP.string[0] }}</p>
+        <p *ngIf="a.plugins.Title" class="mb-0">Title: {{ a.plugins.Title.string[0] }}</p>
+        <span *ngIf="a.plugins.HTML5" class="font-weight-bold badge badge-pill badge-secondary mr-1">HTML5</span>
+        <span *ngIf="a.plugins.PHP" class="font-weight-bold badge badge-pill badge-secondary mr-1">PHP {{a.plugins.PHP.version[0]}}</span>
+        <span *ngIf="a.plugins.JQuery" class="font-weight-bold badge badge-pill badge-secondary mr-1">JQuery {{a.plugins.JQuery.version[0]}}</span>
+        <span *ngIf="a.plugins.WordPress" class="font-weight-bold badge badge-pill badge-secondary mr-1">WordPress {{a.plugins.WordPress.version[0]}}</span>
+      </div>
+    </div>
+  </accordion-group>
+</accordion>

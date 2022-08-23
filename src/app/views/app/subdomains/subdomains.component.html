@@ -1,0 +1,19 @@
+<accordion [isAnimated]="true" *ngIf="subdomainsInfo">
+  <accordion-group [panelClass]="'border'" [isOpen]="false" class="mb-4">
+    <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+      <div
+        class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+        <h2><i class="iconsminds-letter-open"></i>Subdomains</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+      <app-apex-linear-chart-area-subdomains></app-apex-linear-chart-area-subdomains>
+    </div>
+      <div *ngFor="let q of subdomainsInfo" class="col-6 col-md-4 ">
+        <h4 title="Host">{{q.host}}</h4>
+        <h4 title="Source"><span class="font-weight-bold badge badge-pill badge-secondary">{{q.source}}</span></h4>
+      </div>
+    </div>
+  </accordion-group>
+</accordion>

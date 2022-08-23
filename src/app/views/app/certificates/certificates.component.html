@@ -1,0 +1,56 @@
+<accordion [isAnimated]="true" *ngIf="certificatesInfo">
+  <accordion-group [panelClass]="'border'" [isOpen]="false" class="mb-4">
+    <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+      <div
+        class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+        <h2><i class="iconsminds-letter-open"></i>Certificate</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <p><span class="font-weight-bold">DNS: </span>{{ certificatesInfo['host'] }}</p>
+        <p *ngIf="certificatesInfo['cert_valid']">
+          <span class="font-weight-bold">{{'certificates.validity' | translate }}:</span>
+          <span class="bg-success text-white ml-2 p-1">{{'certificates.valid' | translate }}</span>
+        </p>
+        <p *ngIf="certificatesInfo['cert_valid'] == false">
+          <span class="font-weight-bold">{{'certificates.validity' | translate }}:</span>
+          <span class="bg-danger text-white ml-2 p-1">{{'certificates.invalid' | translate }}</span>
+        </p>
+        <p><span class="font-weight-bold">{{'certificates.validFrom' | translate }}:</span> {{ certificatesInfo['valid_from'] }}</p>
+        <p><span class="font-weight-bold">{{'certificates.validTill' | translate }}:</span>{{ certificatesInfo['valid_till'] }}</p>
+        <p><span class="font-weight-bold">{{'certificates.validityDays' | translate }}:</span> {{ certificatesInfo['validity_days'] }}</p>
+        <p *ngIf="certificatesInfo['valid_days_to_expire'] < 0 "><span class="font-weight-bold">{{'certificates.validityDaysLeft' | translate }}:</span> 0</p>
+        <p *ngIf="certificatesInfo['valid_days_to_expire'] >= 0 "><span class="font-weight-bold">{{'certificates.validityDaysLeft' | translate }}:</span> {{ certificatesInfo['valid_days_to_expire'] }}</p>
+        <p><span class="font-weight-bold">{{'certificates.tcpPort' | translate }}:</span> {{ certificatesInfo['tcp_port'] }}</p>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="row card bg-warning mb-1 text-white">
+          <div class="col-12 card-body">
+            <h2>{{'certificates.algorithminfo' | translate }}</h2>
+            <p class="mb-0"><span class="font-weight-bold">{{'certificates.encriptAlgorithm' | translate }}
+              :</span> {{ certificatesInfo['cert_sha1'] }}</p>
+            <p class="mb-0"><span class="font-weight-bold">{{'certificates.algorithm' | translate }}
+              :</span> {{ certificatesInfo['cert_alg'] }}</p>
+            <p class="mb-0"><span class="font-weight-bold">{{'certificates.version' | translate }}
+              :</span> {{ certificatesInfo['cert_ver'] }}</p>
+          </div>
+        </div>
+        <div class="row card bg-success text-white" *ngIf="certificatesInfo['issuer_o'] && certificatesInfo['issuer_c']">
+          <div class="col-12 card-body">
+            <h2>{{'certificates.issuerinfo' | translate }}</h2>
+            <p class="mb-0"><span class="font-weight-bold">{{'certificates.issuer' | translate }}:</span> {{ certificatesInfo['issuer_o'] }}</p>
+            <p class="mb-0"><span class="font-weight-bold">{{'certificates.country' | translate }}:</span> {{certificatesInfo['issuer_c'] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Chart-->
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-12 col-sm-12">
+          <app-apex-linear-chart-area-certificates></app-apex-linear-chart-area-certificates>
+      </div>
+    </div>
+    <!---->
+  </accordion-group>
+</accordion>

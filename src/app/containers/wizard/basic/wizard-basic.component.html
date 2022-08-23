@@ -1,0 +1,83 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <aw-wizard>
+      <aw-wizard-step stepTitle="{{ 'General information' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+            <label>{{ 'forms.name' | translate }}</label>
+            <input type="text" class="form-control" name="name" placeholder="Company name">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.email' | translate }}</label>
+          <input type="text" class="form-control" name="name" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.phone' | translate }}</label>
+          <input type="text" class="form-control" name="name" placeholder="Phone number">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.description' | translate }}</label>
+          <input type="text" class="form-control" name="name" placeholder="Description">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep disabled>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'Domains' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+          <label>{{ 'forms.domain' | translate }}</label>
+          <input type="text" class="form-control" name="domain" placeholder="Main Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain2" placeholder="Optional Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain3" placeholder="Optional Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain4" placeholder="Optional Domain">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'IPs' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+          <label>{{ 'forms.IP' | translate }}</label>
+          <input type="text" class="form-control" name="domain" placeholder="Main IP">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="domain2" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="domain3" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="domain4" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'Confirmation' | translate }}" style="height: 120px;">
+        <div class="text-center">
+          <h2 class="mb-2">{{ 'wizard.content-thanks' | translate }}</h2>
+          <p>{{ 'wizard.registered' | translate }}</p>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep disabled>{{ 'wizard.confirm' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+    </aw-wizard>
+  </div>
+</div>
+

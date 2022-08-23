@@ -1,0 +1,30 @@
+<accordion [isAnimated]="true">
+  <accordion-group
+    [panelClass]="'border'"
+    [isOpen]="false" class="mb-4" >
+    <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+      <div
+        class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+        <h2><i class="simple-icon-globe mr-1 align-middle"></i>Similar Domains</h2>
+      </div>
+    </div>
+    <app-apex-linear-chart-area-similar></app-apex-linear-chart-area-similar>
+    <accordion [isAnimated]="true">
+      <accordion-group *ngFor="let data2 of similarDomainsInfo | keyvalue"
+                       [panelClass]="'border'"
+                       [isOpen]="false">
+        <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+            <h2><i class="simple-icon-globe mr-1 align-middle"></i>{{ data2.key }}</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div *ngFor="let data3 of data2.value | keyvalue" class="col-6 col-md-3">
+            <h5>{{data3.value['domain-name']}}</h5>
+          </div>
+        </div>
+      </accordion-group>
+    </accordion>
+  </accordion-group>
+</accordion>

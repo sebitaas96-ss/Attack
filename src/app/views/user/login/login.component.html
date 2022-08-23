@@ -1,0 +1,39 @@
+<div class="card auth-card">
+  <div class="position-relative image-side ">
+    <p class=" text-white h2">{{ 'user.magic' | translate }}</p>
+    <p class="white mb-0">
+      {{ 'user.please1' | translate }}
+      <br>{{ 'user.please2' | translate }}
+      <br>
+      <a routerLink="/user/register" class="btn btn-primary  white-underline-link mt-2" >{{ 'user.register' | translate }}</a>
+    </p>
+  </div>
+  <div class="form-side">
+    <a class="c-pointer">
+      <span class="logo-single"></span>
+    </a>
+    <h6 class="mb-4">{{ 'user.login' | translate }}</h6>
+
+    <form #loginForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+      <label class="form-group has-float-label">
+        <input class="form-control" required email ngModel #email="ngModel" name="email" [(ngModel)]="emailModel" />
+        <span>{{ 'user.email' | translate }}</span>
+        <div *ngIf="!email.valid && loginForm.submitted" class="invalid-tooltip">{{ 'validate.email' | translate }}</div>
+      </label>
+      <label class="form-group has-float-label">
+        <input class="form-control" type="password" placeholder="" required ngModel #password="ngModel" name="password"
+          [(ngModel)]="passwordModel" />
+        <span>{{ 'user.password' | translate }}</span>
+        <div *ngIf="!password.valid && loginForm.submitted" class="invalid-tooltip">{{ 'validate.password' | translate }}</div>
+      </label>
+      <div class="d-flex justify-content-between align-items-center">
+        <a routerLink="/user/forgot-password">{{ 'user.forgot-password' | translate }}?</a>
+        <app-state-button [btnClass]="'btn btn-primary btn-lg btn-shadow'" [currentState]="buttonState"
+          [isDisabled]="buttonDisabled" click="onLoginClick()">
+          {{ 'user.login-button' | translate | uppercase }}
+        </app-state-button>
+      </div>
+    </form>
+  </div>
+</div>
+<simple-notifications></simple-notifications>

@@ -1,0 +1,21 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-4">
+    <form [formGroup]="basicForm" #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="tooltip-label-right">
+      <div class="form-group error-l-50 text-center">
+        <input type="text" class="form-control" name="domain" formControlName="domain">
+        <div *ngIf="basicForm.get('domain').errors?.required && form.submitted" class="invalid-tooltip">Name is required!</div>
+        <div *ngIf="basicForm.get('domain').errors?.minlength && form.submitted" class="invalid-tooltip">Name must contain at least 2 characters!</div>
+        <button class="btn btn-primary mt-2" type="submit">{{ 'forms.submit' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-4" *ngFor="let domain of domains">
+    <a class="card bg-primary mb-5 text-white" [routerLink]="['/app/details', domain.data]">
+      <div class="card-body text-center">
+        <h2 class="mb-0">{{ domain.data }}</h2>
+      </div>
+    </a>
+  </div>
+</div>

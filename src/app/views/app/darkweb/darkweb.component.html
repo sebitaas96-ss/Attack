@@ -1,0 +1,43 @@
+<accordion [isAnimated]="true">
+        <accordion-group [panelClass]="'border'" [isOpen]="false"  class="mb-4">
+       <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+            <div class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+              <h2><i class="simple-icon-globe mr-1 align-middle"></i>DarkWeb</h2>
+            </div>
+          </div>
+           <accordion [isAnimated]="true" *ngFor="let o of data | keyvalue; let i = index">
+             <accordion-group [panelClass]="'border'" [isOpen]="true" [contextMenu]="basicMenu"
+                              [contextMenuSubject]="o" *ngIf="o.value.length > 0">
+              <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+             <h2><i class="simple-icon-globe mr-1 align-middle"></i>{{o.key}}</h2>
+          </div>
+        </div>
+                <accordion [isAnimated]="true" *ngFor="let u of o.value | keyvalue; let i = index">
+             <accordion-group [panelClass]="'border'" [isOpen]="true" [contextMenu]="basicMenu"
+                              [contextMenuSubject]="u">
+              <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+             <h2><i class="simple-icon-globe mr-1 align-middle"></i>{{ u.value.title }}</h2>
+          </div>
+        </div>
+           <div class="row">
+                <div class="col-12 col-md-6">
+                  <h2 class="font-weight-bold">URL</h2>
+                  <a href="{{u.value.link}}">{{u.value.link}}</a>
+                  <h2 class="font-weight-bold">Description</h2>
+                  <p>{{u.value.description}}</p>
+                </div>
+            <div class="col-12 col-md-6">
+
+            </div>
+           </div>
+             </accordion-group>
+          </accordion>
+
+             </accordion-group>
+          </accordion>
+      </accordion-group>
+</accordion>

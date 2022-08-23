@@ -1,0 +1,55 @@
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ title | translate}}</h5>
+    <form #createUserForm="ngForm" novalidate (ngSubmit)="onSubmit(createUserForm)">
+      <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">{{ 'Name' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName" ngModel #name="ngModel" name="name"
+                 placeholder="{{ 'Name' | translate }}">
+        </div>
+        <div *ngIf="!name.valid && createUserForm.submitted" class="invalid-tooltip">Name is required!</div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">{{ 'forms.email' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" ngModel #email="ngModel"  name="email"
+                 placeholder="{{ 'Email' }}">
+        </div>
+        <div *ngIf="!email.valid && createUserForm.submitted" class="invalid-tooltip">Email is required!</div>
+        <div *ngIf="email?.errors?.email && createUserForm.submitted" class="invalid-tooltip">Email must be a valid address!</div>
+      </div>
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">{{ 'Password' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password" ngModel #password="ngModel"  name="password"
+                 placeholder="{{ 'Password' }}">
+        </div>
+        <div *ngIf="!password.valid && createUserForm.submitted" class="invalid-tooltip">Password is required!</div>
+      </div>
+      <div class="form-group row">
+        <label for="password_confirmation" class="col-sm-2 col-form-label">{{ 'Password Confirmation' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="password_confirmation" ngModel #password_confirmation="ngModel"  name="password_confirmation"
+                 placeholder="{{ 'Confirm Password' }}">
+        </div>
+      </div>
+      <div class="form-group row">
+      <label for="company" class="col-sm-2 col-form-label">{{ 'Company' | translate }}</label>
+      <div class="col-sm-10">
+        <ng-select appearance="outline" #agreeSelect labelForId="yesno" [searchable]="false" id="company">
+          <ng-option [value]="true">Example1</ng-option>
+          <ng-option [value]="false">Example2</ng-option>
+        </ng-select>
+      </div>
+  </div>
+      <div class="form-group row mb-0">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary mb-0">{{ 'Create' | translate }}</button>
+          <button class="btn btn-outline-primary mb-0 ml-2" (click)="returnList()">{{ 'Cancel' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

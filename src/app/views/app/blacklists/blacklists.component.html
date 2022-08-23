@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-12 list" *ngIf="displayMode === 'list'">
+    <accordion [isAnimated]="true">
+      <accordion-group [panelClass]="'border'" [isOpen]="false" [contextMenu]="basicMenu" [contextMenuSubject]="o" class="mb-4">
+        <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+            <h2><i class="iconsminds-letter-open"></i>BlackList</h2>
+          </div>
+        </div>
+        <accordion [isAnimated]="true" *ngFor="let o of data | keyvalue; let i = index">
+      <span *ngIf="o.value.length != 0">
+        <accordion-group [panelClass]="'border'" [isOpen]="true" [contextMenu]="basicMenu" [contextMenuSubject]="o">
+         <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+            <h2><i class="iconsminds-letter-open"></i>{{ o.key }}</h2>
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-12">
+              <div *ngIf="o.value['reports']" id="reports">
+                <div *ngFor="let p of o.value['reports']['values']">
+                  <h4><span class="font-weight-bold">Domain: </span>{{p.data.domain}}</h4>
+                  <h4><span class="font-weight-bold">Country: </span>{{p.data.countryName}}</h4>
+                  <h4 *ngIf="p.data['lastReportedAt']"><span class="font-weight-bold">Last Reported: </span>({{p.data['lastReportedAt']}}</h4>
+                  <div *ngIf="p['categories_strings'].length">
+                    <h4 class="font-weight-bold">Related tags:</h4>
+                    <span *ngFor="let category of p['categories_strings']" class="text-wrap h5 text-center">
+                      <span class="badge badge-primary mr-1 mb-1">{{category}} </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="o.value['spam_reports']" id="spam">
+                <h4 *ngIf="o.value['spam_reports']['appears']">Care! Your Ip appears in a spam list</h4>
+                <h4 *ngIf="o.value['spam_reports']['appears'] === false && !validateEmail(o.key)">Your IP doesn't appear in a spam list</h4>
+                <h4 *ngIf="o.value['spam_reports']['appears'] === false && validateEmail(o.key)">Your Email doesn't appear in a spam list</h4>
+              </div>
+              <div *ngIf="o.value['tracker']" id="tracker">
+                <h3>Virus Tracker</h3>
+                <div *ngFor="let track of o.value['tracker']">
+                  <h4><span class="font-weight-bold">Date:</span>{{track['date']}}</h4>
+                  <h4><span class="font-weight-bold">Type:</span>{{track['type']}}</h4>
+                  <h4><span class="font-weight-bold">IP Info:</span>{{track['date']}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+      </accordion-group>
+      </span>
+        </accordion>
+
+      </accordion-group>
+    </accordion>
+  </div>
+
+  <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+    <i class="simple-icon-arrow-right"></i>
+  </ng-template>
+  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+    <i class="simple-icon-arrow-left"></i>
+  </ng-template>
+</div>

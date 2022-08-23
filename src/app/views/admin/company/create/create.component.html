@@ -1,0 +1,85 @@
+<div class="card mb-5">
+  <div class="card-body">
+    <form #createCompanyForm="ngForm" novalidate (ngSubmit)="onSubmit(createCompanyForm)">
+    <aw-wizard>
+      <aw-wizard-step stepTitle="{{ 'General information' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+          <label>{{ 'forms.name' | translate }}</label>
+          <input type="text" class="form-control" name="name" ngModel #name="ngModel" placeholder="Company name">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.email' | translate }}</label>
+          <input type="text" class="form-control" name="email" ngModel #email="ngModel" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.phone' | translate }}</label>
+          <input type="text" class="form-control" name="phone" ngModel #phone="ngModel" placeholder="Phone number">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.description' | translate }}</label>
+          <input type="text" class="form-control" name="description" ngModel #description="ngModel" placeholder="Description">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep disabled>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'Domains' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+          <label>{{ 'forms.domain' | translate }}</label>
+          <input type="text" class="form-control" name="domain1" ngModel #domain1="ngModel" placeholder="Main Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain2" ngModel #domain2="ngModel" placeholder="Optional Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain3" ngModel #domain3="ngModel" placeholder="Optional Domain">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalDomain' | translate }}</label>
+          <input type="text" class="form-control" name="domain4" ngModel #domain4="ngModel"placeholder="Optional Domain">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'IPs' | translate }}" style="min-height: 120px;">
+        <div class="form-group">
+          <label>{{ 'forms.IP' | translate }}</label>
+          <input type="text" class="form-control" name="ip" ngModel #ip="ngModel"placeholder="Main IP">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="ip2" ngModel #ip2="ngModel" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="ip3" ngModel #ip3="ngModel" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="form-group">
+          <label>{{ 'forms.optionalIp' | translate }}</label>
+          <input type="text" class="form-control" name="ip4" ngModel #ip4="ngModel" placeholder="{{ 'forms.optionalIpplaceholder' | translate }}">
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="button" class="btn btn-primary" awNextStep>{{ 'wizard.next' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+      <aw-wizard-step stepTitle="{{ 'Confirmation' | translate }}" style="height: 120px;">
+        <div class="text-center">
+          <h2 class="mb-2">{{ 'wizard.content-thanks' | translate }}</h2>
+          <p>{{ 'wizard.registered' | translate }}</p>
+        </div>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary" awPreviousStep>{{ 'wizard.prev' | translate }}</button>{{" "}}
+          <button type="submit" class="btn btn-primary">{{ 'wizard.confirm' | translate }}</button>
+        </div>
+      </aw-wizard-step>
+    </aw-wizard>
+    </form>
+  </div>
+</div>
+

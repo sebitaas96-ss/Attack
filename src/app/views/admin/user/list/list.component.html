@@ -1,0 +1,77 @@
+<div class="card h-100">
+  <div class="card-body">
+    <div class="row">
+      <h5 class="card-title">{{ title | translate}}</h5>
+      <button type="button" class="btn btn-xs btn-outline-primary ml-5 card-title" (click)="createUser()">New User
+      </button>
+    </div>
+    <div class="dashboard-best-sellers">
+      <ngx-datatable [rows]="rows"
+                     [columns]="columns"
+                     [columnMode]="columnMode.flex"
+                     [sorts]="[{ prop: 'title', dir: 'asc' }]">
+        <ngx-datatable-column name="ID" [flexGrow]="0.4">
+          <ng-template let-misco="value" ngx-datatable-cell-template>
+            {{ misco }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Email" [flexGrow]="1.5">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Validated" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div *ngIf="value;then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <div class="d-none d-md-inline-block align-text-bottom mr-1">
+                <div class="custom-control custom-switch" tooltip="User Validated" placement="left">
+                  <input type="checkbox" class="custom-control-input" id="validatedSwitch" disabled checked>
+                  <label class="custom-control-label" for="validatedSwitch"></label>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template #elseBlock>
+              <div class="d-none d-md-inline-block align-text-bottom mr-1">
+                <div class="custom-control custom-switch" tooltip="User not validated" placement="left">
+                  <input type="checkbox" class="custom-control-input" id="validatedSwitchfalse" disabled>
+                  <label class="custom-control-label" for="validatedSwitchfalse"></label>
+                </div>
+              </div>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Company" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <div *ngIf="!value;then thenCompanyBlock else elseCompanyBlock"></div>
+              <ng-template #thenCompanyBlock>
+                <p>{{'list.notAssigned' | translate}} </p>
+              </ng-template>
+              <ng-template #elseCompanyBlock>
+                {{ value.name }}
+              </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="1.2">
+          <ng-template let-row="row" let-id="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <button type="button" class="btn btn-xs btn-outline-primary" (click)="deleteUser(row.id)">Delete</button>
+            <button type="button" class="btn btn-xs btn-outline-primary ml-1" (click)="editUser(row.id)">Edit</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+
+<ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-right'></i>
+</ng-template>
+<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-left'></i>
+</ng-template>

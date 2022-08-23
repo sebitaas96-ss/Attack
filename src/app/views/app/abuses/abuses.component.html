@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-12 list" *ngIf="displayMode === 'list'">
+    <accordion [isAnimated]="true">
+      <accordion-group [panelClass]="'border'"
+                       [isOpen]="false"
+                       class="mb-4">
+        <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+          <div
+            class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+            <h2><i class="iconsminds-mail-inbox mr-1 align-middle"></i>Abuses</h2>
+          </div>
+        </div>
+        <accordion [isAnimated]="true" class="col-12">
+          <accordion-group *ngFor="let data of dataReports | keyvalue" [panelClass]="'border'"
+                           [isOpen]="false">
+            <div class="d-flex flex-grow-1 w-100 min-width-zero" accordion-heading>
+              <div
+                class=" card-bodyalign-self-centerd-flexflex-column flex-md-rowjustify-content-betweenmin-width-zero align-items-md-center">
+                <h2><i class="iconsminds-mail-inbox mr-1 align-middle"></i>{{ data.key }}</h2>
+              </div>
+            </div>
+            <div *ngFor="let item of data.value | keyvalue">
+              <div class="row">
+                <div *ngFor="let i of item.value | keyvalue">
+                  <div *ngIf="i.value.exists=='True'">
+                    <h5 class="col-12">{{i.value.domain}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </accordion-group>
+        </accordion>
+      </accordion-group>
+    </accordion>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="card h-100">
+  <div class="card-body">
+    <div class="row">
+      <h5 class="card-title">{{ title | translate}}</h5>
+      <button type="button" class="btn btn-xs btn-outline-primary ml-5 card-title" (click)="createCompany()">New Company</button>
+    </div>
+    <div class="dashboard-best-sellers">
+      <ngx-datatable [rows]="rows"
+                     [columns]="columns"
+                     [columnMode]="columnMode.flex"
+                     [sorts]="[{ prop: 'title', dir: 'asc' }]">
+        <ngx-datatable-column name="ID" [flexGrow]="0.4">
+          <ng-template let-misco="value" ngx-datatable-cell-template>
+            {{ misco }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{ value }}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Email" [flexGrow]="2">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <div *ngIf="value;then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              {{value}}
+            </ng-template>
+            <ng-template #elseBlock>
+              <p>{{'list.noMail' | translate}}</p>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Phone" [flexGrow]="2">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <div *ngIf="value;then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              {{value}}
+            </ng-template>
+            <ng-template #elseBlock>
+              <p>{{'list.noPhone' | translate}}</p>
+            </ng-template>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [flexGrow]="1.2">
+          <ng-template let-row="row" let-id="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <button type="button" class="btn btn-xs btn-outline-primary" (click)="deleteUser(row.id)">Delete</button>
+            <button type="button" class="btn btn-xs btn-outline-primary ml-1" (click)="editCompany(row.id)">Edit</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+
+<ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-right'></i>
+</ng-template>
+<ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+  <i class='simple-icon-arrow-left'></i>
+</ng-template>

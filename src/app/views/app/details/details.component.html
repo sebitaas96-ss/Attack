@@ -1,0 +1,119 @@
+<!--p>Detalles de {{domain}}</p-->
+<div class="row">
+
+  <div class="col-xl-12 col-lg-12 mb-3">
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 mb-3">
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 mb-3">
+            <app-info-card [title]="'Security Rating'" [value]="'5.3'" class="mb-4 h-100"></app-info-card>
+          </div>
+          <div class="col-xl-6 col-lg-12 mb-3">
+            <div class="row">
+              <div class="col-12">
+                <app-info-card [title]="'Homepage'" [value]="domain" [isDomain]="true" class="mb-4"></app-info-card>
+              </div>
+              <div class="col-12">
+                <app-info-card [title]="'Industry Average'" [value]="'7,2'" class=""></app-info-card>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 mb-3">
+            <app-info-card [title]="'Attack Probability'" [value]="'64%'" class="mb-4 h-100"></app-info-card>
+          </div>
+          <div class="col-xl-6 col-lg-12 mb-3">
+            <div class="row">
+              <div class="col-12">
+                <app-info-card [title]="'Homepage'" [value]="domain" [isDomain]="true" class="mb-4"></app-info-card>
+              </div>
+              <div class="col-12">
+                <app-info-card [title]="'Industry Average'" [value]="'7,2'" class=""></app-info-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-12 mb-3">
+        <app-heat-map-chart></app-heat-map-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-12 col-lg-12 mb-3">
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 mb-3 h-100">
+        <app-stacked-bar-chart></app-stacked-bar-chart>
+      </div>
+      <div class="col-xl-6 col-lg-12 mb-3 h-100">
+        
+      </div>
+ 
+    </div>
+    <div class="row">
+
+    </div>
+  </div>
+
+
+  <div class="col-xl-12 col-lg-12 mb-3">
+    <div class="row">
+      <div class="col-xl-6 col-lg-12 mb-3">
+        <!--app-radial-process-card-analyzers [title]="polarTitle"></app-radial-process-card-analyzers-->
+        <app-stacked-bar-chart></app-stacked-bar-chart>
+      </div>
+      <div class="col-xl-3 col-lg-6 mb-3">
+      
+        <app-info-card [title]="'Subdomains analyzed'" [value]="subdomainsInfo.length" *ngIf="subdomainsLoaded" class="mb-4"></app-info-card>
+        <app-info-card [title]="'Emails analyzed'" [value]="emails.length" class=""></app-info-card>
+      </div>
+      <div class="col-xl-3 col-lg-6 mb-3">
+        <app-info-card [title]="'Industry'" [value]="" class="mb-4"></app-info-card>
+        <app-info-card [title]="'IP´s analyzed'" [value]="ips.length" class="mb-4"></app-info-card>
+        <app-info-card [title]="'Certificate Status'" [value]="certificateStatus" ></app-info-card>
+        <!--app-polar-chart-area></app-polar-chart-area-->
+      </div>
+      <div class="col-xl-6 col-lg-12 mb-3" id="radar" #radar>
+        <app-apex-radar-chart-area ></app-apex-radar-chart-area>
+      </div>
+      <div class="col-xl-6 col-lg-12 mb-3" id="monthly" #monthly>
+        <app-apex-line-chart-monthly-evolution></app-apex-line-chart-monthly-evolution>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 list" *ngIf="displayMode === 'list'">
+    <!-- DOMAIN -->
+    <app-domain [data]="dataDomain"></app-domain>
+    <!-- CERTIFICATES -->
+    <app-certificates></app-certificates>
+    <!-- SUBDOMAINS -->
+    <app-subdomains></app-subdomains>
+    <!-- SIMILAR -->
+    <app-similar></app-similar>
+    <!-- PASSWORDS -->
+    <app-passwords></app-passwords>
+    <!-- DARKWEB -->
+    <app-darkweb></app-darkweb>
+    <!-- BLACKLIST -->
+    <app-blacklist></app-blacklist>
+    <!-- ABUSES -->
+    <app-abuses></app-abuses>
+  </div>
+
+  <ng-template #nextTemplate let-disabled="disabled" let-currentPage="currentPage">
+    <i class="simple-icon-arrow-right"></i>
+  </ng-template>
+  <ng-template #prevTemplate let-disabled="disabled" let-currentPage="currentPage">
+    <i class="simple-icon-arrow-left"></i>
+  </ng-template>
+  
+</div>
+<div class="row">
+  <input type="button" value="Generate PDF" (click)="GeneratePDF()">
+</div>
+

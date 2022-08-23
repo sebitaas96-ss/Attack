@@ -1,0 +1,43 @@
+<div class="card h-100">
+  <div class="card-body">
+    <h5 class="card-title">{{ title | translate}}</h5>
+    <form #editForm="ngForm" novalidate (ngSubmit)="onSubmit(editForm)">
+      <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">{{ 'Name' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName" ngModel #name="ngModel" name="name" value="{{ company?.name }}"
+                 placeholder="{{ 'Edited name' | translate }}">
+        </div>
+        <div *ngIf="!name.valid && editForm.submitted" class="invalid-tooltip">Name is required!</div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">{{ 'forms.email' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" ngModel #email="ngModel"  name="email"
+                 placeholder="{{ 'Edited Mail' }}" value="{{ company?.email }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">{{ 'forms.phone' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="phone" ngModel #phone="ngModel"  name="phone"
+                 placeholder="{{ 'Edited Phone' }}" value="{{ company?.phone }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">{{ 'forms.description' | translate }}</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="description" ngModel #description="ngModel"  name="description"
+                 placeholder="{{ 'Edited Description' }}" value="{{ company?.description }}">
+        </div>
+      </div>
+      <div class="form-group row mb-0">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary mb-0">{{ 'Edit' | translate }}</button>
+          <button class="btn btn-outline-primary mb-0 ml-2" (click)="returnList()">{{ 'Cancel' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<simple-notifications></simple-notifications>
